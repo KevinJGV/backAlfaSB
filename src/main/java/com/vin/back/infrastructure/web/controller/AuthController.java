@@ -9,16 +9,24 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vin.back.application.service.authService;
 import com.vin.back.domain.model.userEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 @RestController
 @RequestMapping("/api")
 public class AuthController {
     @Autowired
-    private authService authCaseUse;
+    private authService authService;
 
     @PostMapping("/auth")
     public ResponseEntity<String> auth(@ModelAttribute userEntity formData) {
-        String token = authCaseUse.login(formData.getUsername(), formData.getPassword());
+        String token = authService.login(formData.getUsername(), formData.getPassword());
         return ResponseEntity.ok(token);
-    }    
+    }
+
+    @GetMapping("/authTest")
+    public String getMethodName() {
+        return "OK!";
+    }
+    
 }

@@ -1,6 +1,5 @@
 package com.vin.back.infrastructure.persistence.repository;
 
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,12 +15,12 @@ public class JpaUserRepository implements searchUserPort, savePort{
     private JpaUsersRepositoryInterface repository;
 
     @Override
-    public Optional<userEntity> searchEmail(String email) {
+    public userEntity searchEmail(String email) {
         return repository.findByEmail(email);
     }
 
     @Override
-    public Optional<userEntity> searchUsername(String username) {
+    public userEntity searchUsername(String username) {
         return repository.findByUsername(username);
     }
 
