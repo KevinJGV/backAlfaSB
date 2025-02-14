@@ -10,7 +10,12 @@ public class EncoderComponent implements encoderPort{
     private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();   
 
     @Override
-    public boolean validate(String loginPassword, String savedPassword) {
+    public boolean matches(CharSequence loginPassword, String savedPassword) {
         return encoder.matches(loginPassword, savedPassword);
+    }
+
+    @Override
+    public String encode(CharSequence rawPassword) {
+        return encoder.encode(rawPassword);
     }
 }

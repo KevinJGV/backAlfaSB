@@ -9,16 +9,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="user")
+@Table(name="costumers")
 public class userEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String userName;
-    private String fullName;
-    private String eMail;
+    private String username;
+    private String fullname;
+    private String email;
     private LocalDate birth;
     private Long phone;
     private String password;
@@ -27,12 +27,12 @@ public class userEntity {
 
     public userEntity(LocalDate birth, String eMail, String fullName, Long id, String password, Long phone, String userName) {
         this.birth = birth;
-        this.eMail = eMail;
-        this.fullName = fullName;
+        this.email = eMail;
+        this.fullname = fullName;
         this.id = id;
         this.password = password;
         this.phone = phone;
-        this.userName = userName;
+        this.username = userName;
     }
 
     public Long getId() {
@@ -43,28 +43,28 @@ public class userEntity {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String userName) {
+        this.username = userName;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getFullname() {
+        return fullname;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setFullname(String fullName) {
+        this.fullname = fullName;
     }
 
-    public String geteMail() {
-        return eMail;
+    public String getEmail() {
+        return email;
     }
 
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
+    public void setEmail(String eMail) {
+        this.email = eMail;
     }
 
     public LocalDate getBirth() {
@@ -96,9 +96,9 @@ public class userEntity {
         StringBuilder sb = new StringBuilder();
         sb.append("userEntity{");
         sb.append("id=").append(id);
-        sb.append(", userName=").append(userName);
-        sb.append(", fullName=").append(fullName);
-        sb.append(", eMail=").append(eMail);
+        sb.append(", userName=").append(username);
+        sb.append(", fullName=").append(fullname);
+        sb.append(", eMail=").append(email);
         sb.append(", birth=").append(birth);
         sb.append(", phone=").append(phone);
         sb.append(", password=").append(password);
