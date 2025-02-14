@@ -1,4 +1,4 @@
-package com.vin.back.application.port.out.authPort;
+package com.vin.back.application.port.out;
 
 import java.util.Optional;
 

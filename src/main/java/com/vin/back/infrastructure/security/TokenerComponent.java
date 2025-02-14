@@ -7,7 +7,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.vin.back.application.port.out.authPort.tokenGenerator;
+import com.vin.back.application.port.out.authPort.tokenGeneratorPort;
 import com.vin.back.domain.model.userEntity;
 
 import io.jsonwebtoken.Claims;
@@ -16,7 +16,7 @@ import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
 
 @Component
-public class TokenerComponent implements tokenGenerator{
+public class TokenerComponent implements tokenGeneratorPort{
 
     @Value("${security.jwt.secret}")
     private String jwtSecret;

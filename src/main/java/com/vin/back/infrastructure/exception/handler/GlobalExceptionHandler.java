@@ -1,6 +1,7 @@
 package com.vin.back.infrastructure.exception.handler;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -52,9 +53,8 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(tokenFilteringException.class)
-    @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    public String tokenFilteringException(tokenFilteringException e) {
-        return e.getMessage();
+    public ResponseEntity<String> tokenFilteringException(tokenFilteringException e) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token inválido o expirado.");
     }
     // @ExceptionHandler(.class)
     // @ResponseStatus(HttpStatus.)

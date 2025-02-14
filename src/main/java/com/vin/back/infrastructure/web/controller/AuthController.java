@@ -9,10 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vin.back.application.service.authService;
 import com.vin.back.domain.model.userEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-
 
 @RestController
 @RequestMapping("/api")
@@ -21,8 +17,8 @@ public class AuthController {
     private authService authCaseUse;
 
     @PostMapping("/auth")
-    public ResponseEntity<String> auth(@ModelAttribute userEntity formInput) {
-        String token = authCaseUse.login(formInput.getUsername(), formInput.getPassword());
+    public ResponseEntity<String> auth(@ModelAttribute userEntity formData) {
+        String token = authCaseUse.login(formData.getUsername(), formData.getPassword());
         return ResponseEntity.ok(token);
     }    
 }
