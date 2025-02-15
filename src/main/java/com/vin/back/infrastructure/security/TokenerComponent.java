@@ -34,7 +34,7 @@ public class TokenerComponent implements tokenGeneratorPort{
     @Override
     public String generate(userEntity usuario) {
         return Jwts.builder()
-        .setSubject(usuario.getUsername())
+        .setSubject(usuario.getUserName())
         .setIssuedAt(new Date())
         .setExpiration(new Date(System.currentTimeMillis() + jwtExpiration))
         .signWith(key)

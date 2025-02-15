@@ -11,44 +11,39 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="users")
-public class userEntity {
+@Table(name = "posts")
+public class postsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, length = 70)
-    private String userName;
+    @ManyToOne
+    @JoinColumn(name = "idUser")
+    private userEntity userEntity;
 
-    @Column(unique = true)
-    private String email;
-
-    @Column(length = 70)
-    private String fullName;
-    
-    private LocalDate birthDate;
-
-    @Column(length = 70)
-    private Long phone;
-
-    @Column(length = 170)
-    private String password;
+    @Column(columnDefinition = "TEXT", length = 500)
+    private String content;
 
     @Nullable
     @Column(columnDefinition = "TEXT")
-    private String profilePhotoURI;
+    private String imageAttached;
 
-    @Nullable
-    private String biography;
+    private LocalDate uploadDate;
 
-    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "postsEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<postsHashtagsEntity> postsHashtagsEntities = new ArrayList<>();
+
+    @OneToMany(mappedBy = "postsEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<likesEntity> likesEntities = new ArrayList<>();
 
-    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "postsEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<commentsEntity> commentsEntities = new ArrayList<>();
+
 }

@@ -20,7 +20,7 @@ public class AuthController {
 
     @PostMapping("/auth")
     public ResponseEntity<String> auth(@ModelAttribute userEntity formData) {
-        String token = authService.login(formData.getUsername(), formData.getPassword());
+        String token = authService.login(formData.getUserName(), formData.getPassword());
         return ResponseEntity.ok(token);
     }
 
