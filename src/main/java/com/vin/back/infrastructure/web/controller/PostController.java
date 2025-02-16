@@ -1,0 +1,25 @@
+package com.vin.back.infrastructure.web.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.vin.back.application.service.PostService;
+import com.vin.back.domain.model.postEntity;
+
+@RestController
+@RequestMapping("/api/post")
+public class PostController {
+
+    @Autowired
+    private PostService postService;
+
+    @GetMapping
+    public ResponseEntity<List<postEntity>> getPosts() {
+        return postService.;
+    }
+}

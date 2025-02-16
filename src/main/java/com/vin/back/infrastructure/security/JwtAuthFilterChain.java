@@ -11,7 +11,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.vin.back.infrastructure.exception.tokenFilteringException;
+import com.vin.back.infrastructure.exception.TokenFilteringException;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -35,7 +35,7 @@ public class JwtAuthFilterChain extends OncePerRequestFilter{
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }
         } catch (Exception e) {
-            throw new tokenFilteringException("Error en el tratamiento del token : ", e);
+            throw new TokenFilteringException("Error en el tratamiento del token : ", e);
         }
 
         filterChain.doFilter(request, response);

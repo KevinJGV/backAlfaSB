@@ -11,7 +11,7 @@ import com.vin.back.application.exception.unvalidatedCredentialException;
 import com.vin.back.infrastructure.exception.NotFoundEmailException;
 import com.vin.back.infrastructure.exception.NotFoundUsernameException;
 import com.vin.back.infrastructure.exception.SecurityConfigException;
-import com.vin.back.infrastructure.exception.tokenFilteringException;
+import com.vin.back.infrastructure.exception.TokenFilteringException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -52,8 +52,8 @@ public class GlobalExceptionHandler {
         return e.getMessage();
     }
 
-    @ExceptionHandler(tokenFilteringException.class)
-    public ResponseEntity<String> tokenFilteringException(tokenFilteringException e) {
+    @ExceptionHandler(TokenFilteringException.class)
+    public ResponseEntity<String> tokenFilteringException(TokenFilteringException e) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token inválido o expirado.");
     }
     // @ExceptionHandler(.class)

@@ -1,7 +1,7 @@
 package com.vin.back.infrastructure.exception;
 
-public class tokenFilteringException extends RuntimeException{
-    public tokenFilteringException(String msg, Throwable e) {
+public class TokenFilteringException extends RuntimeException{
+    public TokenFilteringException(String msg, Throwable e) {
         super(msg, e);
     } 
 }

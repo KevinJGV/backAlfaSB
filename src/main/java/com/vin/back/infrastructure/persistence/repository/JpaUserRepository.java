@@ -4,15 +4,15 @@ package com.vin.back.infrastructure.persistence.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.vin.back.application.port.out.savePort;
-import com.vin.back.application.port.out.searchUserPort;
-import com.vin.back.application.port.out.respository.JpaUsersRepositoryInterface;
+import com.vin.back.application.port.out.SavePort;
+import com.vin.back.application.port.out.respository.JpaUserRepositoryInterface;
+import com.vin.back.application.port.out.UserPort;
 import com.vin.back.domain.model.userEntity;
 
 @Repository
-public class JpaUserRepository implements searchUserPort, savePort{
+public class JpaUserRepository implements UserPort, SavePort{
     @Autowired
-    private JpaUsersRepositoryInterface repository;
+    private JpaUserRepositoryInterface repository;
 
     @Override
     public userEntity searchEmail(String email) {
