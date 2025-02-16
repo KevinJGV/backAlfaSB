@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vin.back.application.service.sessionServices.authService;
+import com.vin.back.application.service.sessionServices.AuthService;
 import com.vin.back.domain.model.userEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequestMapping("/api/auth")
 public class AuthController {
     @Autowired
-    private authService authService;
+    private AuthService authService;
 
     @PostMapping
     public ResponseEntity<String> auth(@ModelAttribute userEntity formData) {

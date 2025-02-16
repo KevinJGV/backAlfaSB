@@ -11,14 +11,14 @@ import com.vin.back.application.port.out.UserPort;
 import com.vin.back.domain.model.userEntity;
 
 @Service
-public class authService implements AuthCaseUse{
+public class AuthService implements AuthCaseUse{
     @Autowired
     private UserPort searchUserPort;
     @Autowired
     private EncoderPort encoderPort;
     @Autowired
     private TokenGeneratorPort tokenGenerator;
-    public authService() {
+    public AuthService() {
     }
 
     @Override

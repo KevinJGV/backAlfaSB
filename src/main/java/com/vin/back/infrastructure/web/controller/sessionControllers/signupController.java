@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vin.back.application.service.sessionServices.signupService;
+import com.vin.back.application.service.sessionServices.SignupService;
 import com.vin.back.domain.model.userEntity;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @RestController
 @RequestMapping("/api/signup")
-public class signupController {
+public class SignupController {
 
     @Autowired
-    private signupService signupService;
+    private SignupService signupService;
 
     @PostMapping
     public ResponseEntity<Void> signup(@ModelAttribute userEntity formData) {

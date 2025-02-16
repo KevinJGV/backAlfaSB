@@ -4,13 +4,13 @@ package com.vin.back.infrastructure.persistence.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.vin.back.application.port.out.SavePort;
 import com.vin.back.application.port.out.respository.JpaUserRepositoryInterface;
 import com.vin.back.application.port.out.UserPort;
+import com.vin.back.application.port.out.common.SavePort;
 import com.vin.back.domain.model.userEntity;
 
 @Repository
-public class JpaUserRepository implements UserPort, SavePort{
+public class JpaUserRepository implements UserPort, SavePort<userEntity>{
     @Autowired
     private JpaUserRepositoryInterface repository;
 
@@ -24,10 +24,9 @@ public class JpaUserRepository implements UserPort, SavePort{
         return repository.findByUsername(username);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
-    public <T> T save(T entity) {
-        return (T) repository.save((userEntity) entity);
+    public userEntity save(userEntity entity) {
+        return repository.save((userEntity) entity);
     }
 }
 

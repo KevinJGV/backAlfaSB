@@ -4,19 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vin.back.application.port.in.sessionCasesUse.SignupCaseUse;
-import com.vin.back.application.port.out.SavePort;
 import com.vin.back.application.port.out.sesisonPort.EncoderPort;
 import com.vin.back.application.port.out.UserPort;
+import com.vin.back.application.port.out.common.SavePort;
 import com.vin.back.domain.model.userEntity;
 
 @Service
-public class signupService implements SignupCaseUse{
+public class SignupService implements SignupCaseUse{
     @Autowired
     private UserPort searchUserPort;
     @Autowired
     private EncoderPort encoderPort;
     @Autowired
-    private SavePort savePort;
+    private SavePort<userEntity> savePort;
 
     @Override
     public boolean signup(userEntity user) {
