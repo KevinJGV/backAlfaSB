@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "hashtags")
-public class hashtagEntity {
+public class HashtagEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,12 +24,12 @@ public class hashtagEntity {
     private String name;
 
     @OneToMany(mappedBy = "hashtagEntity", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<postHashtagEntity> postHashtagEntities = new ArrayList<>();
+    private List<PostHashtagEntity> postHashtagEntities = new ArrayList<>();
 
-    public hashtagEntity() {
+    public HashtagEntity() {
     }
 
-    public hashtagEntity(Long id, String name, List<postHashtagEntity> postHashtagEntities) {
+    public HashtagEntity(Long id, String name, List<PostHashtagEntity> postHashtagEntities) {
         this.id = id;
         this.name = name;
         this.postHashtagEntities = postHashtagEntities;
@@ -51,11 +51,11 @@ public class hashtagEntity {
         this.name = name;
     }
 
-    public List<postHashtagEntity> getPostHashtagEntities() {
+    public List<PostHashtagEntity> getPostHashtagEntities() {
         return postHashtagEntities;
     }
 
-    public void setPostHashtagEntities(List<postHashtagEntity> postHashtagEntities) {
+    public void setPostHashtagEntities(List<PostHashtagEntity> postHashtagEntities) {
         this.postHashtagEntities = postHashtagEntities;
     }
 

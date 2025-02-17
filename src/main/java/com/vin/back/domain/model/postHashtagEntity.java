@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "posts_hashtags")
-public class postHashtagEntity {
+public class PostHashtagEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,16 +18,16 @@ public class postHashtagEntity {
 
     @ManyToOne
     @JoinColumn(name = "idpost")
-    private postEntity postEntity;
+    private PostEntity postEntity;
 
     @ManyToOne
     @JoinColumn(name = "idhashtag")
-    private hashtagEntity hashtagEntity;
+    private HashtagEntity hashtagEntity;
 
-    public postHashtagEntity() {
+    public PostHashtagEntity() {
     }
 
-    public postHashtagEntity(Long id, postEntity postsEntity, hashtagEntity hashtagsEntity) {
+    public PostHashtagEntity(Long id, PostEntity postsEntity, HashtagEntity hashtagsEntity) {
         this.id = id;
         this.postEntity = postsEntity;
         this.hashtagEntity = hashtagsEntity;
@@ -41,19 +41,19 @@ public class postHashtagEntity {
         this.id = id;
     }
 
-    public postEntity getPostEntity() {
+    public PostEntity getPostEntity() {
         return postEntity;
     }
 
-    public void setPostEntity(postEntity postsEntity) {
+    public void setPostEntity(PostEntity postsEntity) {
         this.postEntity = postsEntity;
     }
 
-    public hashtagEntity getHashtagEntity() {
+    public HashtagEntity getHashtagEntity() {
         return hashtagEntity;
     }
 
-    public void setHashtagEntity(hashtagEntity hashtagsEntity) {
+    public void setHashtagEntity(HashtagEntity hashtagsEntity) {
         this.hashtagEntity = hashtagsEntity;
     }
 

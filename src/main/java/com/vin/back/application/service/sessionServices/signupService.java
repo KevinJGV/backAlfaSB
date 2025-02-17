@@ -7,7 +7,7 @@ import com.vin.back.application.port.in.sessionCasesUse.SignupCaseUse;
 import com.vin.back.application.port.out.sesisonPort.EncoderPort;
 import com.vin.back.application.port.out.UserPort;
 import com.vin.back.application.port.out.common.SavePort;
-import com.vin.back.domain.model.userEntity;
+import com.vin.back.domain.model.UserEntity;
 
 @Service
 public class SignupService implements SignupCaseUse{
@@ -16,11 +16,11 @@ public class SignupService implements SignupCaseUse{
     @Autowired
     private EncoderPort encoderPort;
     @Autowired
-    private SavePort<userEntity> savePort;
+    private SavePort<UserEntity> savePort;
 
     @Override
-    public boolean signup(userEntity user) {
-        userEntity findedUser = searchUserPort.getByEmail(user.getEmail());
+    public boolean signup(UserEntity user) {
+        UserEntity findedUser = searchUserPort.getByEmail(user.getEmail());
         if (findedUser == null) {
             user.setPassword(encoderPort.encode(user.getPassword()));
             savePort.save(user);

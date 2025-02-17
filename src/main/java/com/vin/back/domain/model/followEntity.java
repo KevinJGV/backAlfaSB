@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "follows")
-public class followEntity {
+public class FollowEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,18 +20,18 @@ public class followEntity {
 
     @ManyToOne
     @JoinColumn(name = "iduserfollowed")
-    private userEntity userFollowedEntity;
+    private UserEntity userFollowedEntity;
 
     @ManyToOne
     @JoinColumn(name = "iduserfollower")
-    private userEntity userFollowerEntity;
+    private UserEntity userFollowerEntity;
 
     private LocalDate followdate;
 
-    public followEntity() {
+    public FollowEntity() {
     }
 
-    public followEntity(Long id, userEntity userFollowedEntity, userEntity userFollowerEntity, LocalDate followDate) {
+    public FollowEntity(Long id, UserEntity userFollowedEntity, UserEntity userFollowerEntity, LocalDate followDate) {
         this.id = id;
         this.userFollowedEntity = userFollowedEntity;
         this.userFollowerEntity = userFollowerEntity;
@@ -46,19 +46,19 @@ public class followEntity {
         this.id = id;
     }
 
-    public userEntity getUserFollowedEntity() {
+    public UserEntity getUserFollowedEntity() {
         return userFollowedEntity;
     }
 
-    public void setUserFollowedEntity(userEntity userFollowedEntity) {
+    public void setUserFollowedEntity(UserEntity userFollowedEntity) {
         this.userFollowedEntity = userFollowedEntity;
     }
 
-    public userEntity getUserFollowerEntity() {
+    public UserEntity getUserFollowerEntity() {
         return userFollowerEntity;
     }
 
-    public void setUserFollowerEntity(userEntity userFollowerEntity) {
+    public void setUserFollowerEntity(UserEntity userFollowerEntity) {
         this.userFollowerEntity = userFollowerEntity;
     }
 

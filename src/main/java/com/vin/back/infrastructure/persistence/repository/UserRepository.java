@@ -8,36 +8,42 @@ import org.springframework.stereotype.Repository;
 
 import com.vin.back.application.port.out.respository.JpaUserRepositoryInterface;
 import com.vin.back.application.port.out.UserPort;
-import com.vin.back.domain.model.userEntity;
+import com.vin.back.domain.model.UserEntity;
+import com.vin.back.infrastructure.exception.UnknownUserException;
 
 @Repository
-public class JpaUserRepository implements UserPort{
+public class UserRepository implements UserPort{
     @Autowired
     private JpaUserRepositoryInterface repository;
 
     @Override
-    public userEntity getByEmail(String email) {
+    public UserEntity findById(Long id) {
+        return repository.findById(id).orElseThrow(() -> new UnknownUserException("Usuario desconocido."));
+    }    
+
+    @Override
+    public UserEntity getByEmail(String email) {
         return repository.findByEmail(email);
     }
 
     @Override
-    public userEntity getByUsername(String username) {
+    public UserEntity getByUsername(String username) {
         return repository.findByUsername(username);
     }
 
     @Override
-    public List<userEntity> getFollowers(String username) {
+    public List<UserEntity> getFollowers(String username) {
         return repository.findFollowersByUsername(username);
     }
 
     @Override
-    public List<userEntity> getFollowed(String username) {
+    public List<UserEntity> getFollowed(String username) {
         return repository.findFollowedByUsername(username);
     }
 
     @Override
-    public userEntity save(userEntity entity) {
+    public UserEntity save(UserEntity entity) {
         return repository.save(entity);
-    }    
+    }
 }
 

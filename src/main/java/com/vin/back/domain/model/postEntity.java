@@ -17,7 +17,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "posts")
-public class postEntity {
+public class PostEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class postEntity {
 
     @ManyToOne
     @JoinColumn(name = "iduser")
-    private userEntity userEntity;
+    private UserEntity userEntity;
 
     @Column(columnDefinition = "TEXT", length = 500)
     private String content;
@@ -38,20 +38,20 @@ public class postEntity {
     private boolean modified = false;
 
     @OneToMany(mappedBy = "postEntity", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<postHashtagEntity> postHashtagEntities = new ArrayList<>();
+    private List<PostHashtagEntity> postHashtagEntities = new ArrayList<>();
 
     @OneToMany(mappedBy = "postEntity", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<likeEntity> likeEntities = new ArrayList<>();
+    private List<LikeEntity> likeEntities = new ArrayList<>();
 
     @OneToMany(mappedBy = "postEntity", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<commentEntity> commentEntities = new ArrayList<>();
+    private List<CommentEntity> commentEntities = new ArrayList<>();
 
-    public postEntity() {
+    public PostEntity() {
     }
 
-    public postEntity(Long id, com.vin.back.domain.model.userEntity userEntity, String content, String imageAttached,
-            LocalDate uploadDate, boolean modified, List<postHashtagEntity> postHashtagEntities,
-            List<likeEntity> likeEntities, List<commentEntity> commentEntities) {
+    public PostEntity(Long id, com.vin.back.domain.model.UserEntity userEntity, String content, String imageAttached,
+            LocalDate uploadDate, boolean modified, List<PostHashtagEntity> postHashtagEntities,
+            List<LikeEntity> likeEntities, List<CommentEntity> commentEntities) {
         this.id = id;
         this.userEntity = userEntity;
         this.content = content;
@@ -71,11 +71,11 @@ public class postEntity {
         this.id = id;
     }
 
-    public userEntity getUserEntity() {
+    public UserEntity getUserEntity() {
         return userEntity;
     }
 
-    public void setUserEntity(userEntity userEntity) {
+    public void setUserEntity(UserEntity userEntity) {
         this.userEntity = userEntity;
     }
 
@@ -111,27 +111,27 @@ public class postEntity {
         this.modified = modified;
     }
 
-    public List<postHashtagEntity> getPostHashtagEntities() {
+    public List<PostHashtagEntity> getPostHashtagEntities() {
         return postHashtagEntities;
     }
 
-    public void setPostHashtagEntities(List<postHashtagEntity> postHashtagEntities) {
+    public void setPostHashtagEntities(List<PostHashtagEntity> postHashtagEntities) {
         this.postHashtagEntities = postHashtagEntities;
     }
 
-    public List<likeEntity> getLikeEntities() {
+    public List<LikeEntity> getLikeEntities() {
         return likeEntities;
     }
 
-    public void setLikeEntities(List<likeEntity> likeEntities) {
+    public void setLikeEntities(List<LikeEntity> likeEntities) {
         this.likeEntities = likeEntities;
     }
 
-    public List<commentEntity> getCommentEntities() {
+    public List<CommentEntity> getCommentEntities() {
         return commentEntities;
     }
 
-    public void setCommentEntities(List<commentEntity> commentEntities) {
+    public void setCommentEntities(List<CommentEntity> commentEntities) {
         this.commentEntities = commentEntities;
     }
 

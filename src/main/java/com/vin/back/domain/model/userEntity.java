@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="users")
-public class userEntity {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,27 +45,27 @@ public class userEntity {
     private String biography;
 
     @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<likeEntity> likeEntities = new ArrayList<>();
+    private List<LikeEntity> likeEntities = new ArrayList<>();
 
     @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<commentEntity> commentEntities = new ArrayList<>();
+    private List<CommentEntity> commentEntities = new ArrayList<>();
 
     @OneToMany(mappedBy = "userFollowedEntity", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<followEntity> followingEntities = new ArrayList<>();
+    private List<FollowEntity> followingEntities = new ArrayList<>();
 
     @OneToMany(mappedBy = "userFollowerEntity", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<followEntity> followerEntities = new ArrayList<>();
+    private List<FollowEntity> followerEntities = new ArrayList<>();
 
     @OneToMany(mappedBy = "userActionEntity", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<notificationEntity> notificationEntities = new ArrayList<>();
+    private List<NotificationEntity> notificationEntities = new ArrayList<>();
 
-    public userEntity() {
+    public UserEntity() {
     }
 
-    public userEntity(Long id, String userName, String email, String fullName, LocalDate birthDate, Long phone,
-            String password, String profilePhotoURI, String biography, List<likeEntity> likesEntities,
-            List<commentEntity> commentsEntities, List<followEntity> followingEntities,
-            List<followEntity> followerEntities, List<notificationEntity> notificationEntities) {
+    public UserEntity(Long id, String userName, String email, String fullName, LocalDate birthDate, Long phone,
+            String password, String profilePhotoURI, String biography, List<LikeEntity> likesEntities,
+            List<CommentEntity> commentsEntities, List<FollowEntity> followingEntities,
+            List<FollowEntity> followerEntities, List<NotificationEntity> notificationEntities) {
         this.id = id;
         this.username = userName;
         this.email = email;
@@ -154,43 +154,43 @@ public class userEntity {
         this.biography = biography;
     }
 
-    public List<likeEntity> getLikeEntities() {
+    public List<LikeEntity> getLikeEntities() {
         return likeEntities;
     }
 
-    public void setLikeEntities(List<likeEntity> likesEntities) {
+    public void setLikeEntities(List<LikeEntity> likesEntities) {
         this.likeEntities = likesEntities;
     }
 
-    public List<commentEntity> getCommentEntities() {
+    public List<CommentEntity> getCommentEntities() {
         return commentEntities;
     }
 
-    public void setCommentEntities(List<commentEntity> commentsEntities) {
+    public void setCommentEntities(List<CommentEntity> commentsEntities) {
         this.commentEntities = commentsEntities;
     }
 
-    public List<followEntity> getFollowingEntities() {
+    public List<FollowEntity> getFollowingEntities() {
         return followingEntities;
     }
 
-    public void setFollowingEntities(List<followEntity> followingEntities) {
+    public void setFollowingEntities(List<FollowEntity> followingEntities) {
         this.followingEntities = followingEntities;
     }
 
-    public List<followEntity> getFollowerEntities() {
+    public List<FollowEntity> getFollowerEntities() {
         return followerEntities;
     }
 
-    public void setFollowerEntities(List<followEntity> followerEntities) {
+    public void setFollowerEntities(List<FollowEntity> followerEntities) {
         this.followerEntities = followerEntities;
     }
 
-    public List<notificationEntity> getNotificationEntities() {
+    public List<NotificationEntity> getNotificationEntities() {
         return notificationEntities;
     }
 
-    public void setNotificationEntities(List<notificationEntity> notificationEntities) {
+    public void setNotificationEntities(List<NotificationEntity> notificationEntities) {
         this.notificationEntities = notificationEntities;
     }
 

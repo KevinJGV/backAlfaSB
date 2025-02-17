@@ -5,10 +5,10 @@ import java.util.List;
 import com.vin.back.application.dto.CommentDTO;
 import com.vin.back.application.dto.ShortUserDTO;
 import com.vin.back.application.dto.TagDTO;
-import com.vin.back.domain.model.commentEntity;
+import com.vin.back.domain.model.CommentEntity;
 
 public class CommentMapper {
-public static List<CommentDTO> toDTO(List<commentEntity> commentEntities) {
+public static List<CommentDTO> toDTO(List<CommentEntity> commentEntities) {
         return commentEntities.stream().map(comment -> {
             ShortUserDTO user = new ShortUserDTO(comment.getUserEntity());
             List<TagDTO> tags = TagMapper.toDTO(comment.getTagEntities());
@@ -16,7 +16,7 @@ public static List<CommentDTO> toDTO(List<commentEntity> commentEntities) {
         }).toList();
     }
 
-    public static CommentDTO toDTO(commentEntity commentEntity ) {
+    public static CommentDTO toDTO(CommentEntity commentEntity ) {
         ShortUserDTO user = new ShortUserDTO(commentEntity.getUserEntity());
         List<TagDTO> tags = TagMapper.toDTO(commentEntity.getTagEntities());
         return new CommentDTO(commentEntity, user,tags);

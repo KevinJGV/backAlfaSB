@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "likes")
-public class likeEntity {
+public class LikeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,16 +18,16 @@ public class likeEntity {
 
     @ManyToOne
     @JoinColumn(name = "iduser")
-    private userEntity userEntity;
+    private UserEntity userEntity;
 
     @ManyToOne
     @JoinColumn(name = "idpost")
-    private postEntity postEntity;
+    private PostEntity postEntity;
 
-    public likeEntity() {
+    public LikeEntity() {
     }
 
-    public likeEntity(Long id, com.vin.back.domain.model.userEntity userEntity, postEntity postsEntity) {
+    public LikeEntity(Long id, com.vin.back.domain.model.UserEntity userEntity, PostEntity postsEntity) {
         this.id = id;
         this.userEntity = userEntity;
         this.postEntity = postsEntity;
@@ -41,19 +41,19 @@ public class likeEntity {
         this.id = id;
     }
 
-    public userEntity getUserEntity() {
+    public UserEntity getUserEntity() {
         return userEntity;
     }
 
-    public void setUserEntity(userEntity userEntity) {
+    public void setUserEntity(UserEntity userEntity) {
         this.userEntity = userEntity;
     }
 
-    public postEntity getPostEntity() {
+    public PostEntity getPostEntity() {
         return postEntity;
     }
 
-    public void setPostEntity(postEntity postsEntity) {
+    public void setPostEntity(PostEntity postsEntity) {
         this.postEntity = postsEntity;
     }
 

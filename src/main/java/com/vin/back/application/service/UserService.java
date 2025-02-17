@@ -9,7 +9,7 @@ import com.vin.back.application.dto.UserDTO;
 import com.vin.back.application.port.in.UserCaseUse;
 import com.vin.back.application.port.out.UserPort;
 import com.vin.back.domain.mapper.UserMapper;
-import com.vin.back.domain.model.userEntity;
+import com.vin.back.domain.model.UserEntity;
 
 public class UserService implements UserCaseUse{
 
@@ -18,15 +18,10 @@ public class UserService implements UserCaseUse{
 
     @Override
     public UserDTO getUserDTOByUsername(String username) {
-        userEntity user = userPort.getByUsername(username);
+        UserEntity user = userPort.getByUsername(username);
         List<ShortUserDTO> followers = UserMapper.toDTO(userPort.getFollowers(username));
         List<ShortUserDTO> followed = UserMapper.toDTO(userPort.getFollowed(username));
         return new UserDTO(user,followers,followed);
-    }
-
-    @Override
-    public userEntity getUserEntityByUsername(String username) {
-        return userPort.getByUsername(username);
     }
 
     @Override
@@ -37,5 +32,10 @@ public class UserService implements UserCaseUse{
     @Override
     public List<ShortUserDTO> getFollowed(String username) {
         return UserMapper.toDTO(userPort.getFollowed(username));
+    }
+
+    @Override
+    public UserEntity save(UserEntity userEntity) {
+        return userPort.save(userEntity);
     }    
 }

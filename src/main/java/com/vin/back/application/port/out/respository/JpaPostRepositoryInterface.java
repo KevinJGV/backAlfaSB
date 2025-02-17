@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.vin.back.domain.model.postEntity;
-import com.vin.back.domain.model.userEntity;
+import com.vin.back.domain.model.PostEntity;
+import com.vin.back.domain.model.UserEntity;
 
-public interface JpaPostRepositoryInterface extends JpaRepository<postEntity,Long>{
-    List<postEntity> findAllByUserEntities(userEntity userEntity);
+public interface JpaPostRepositoryInterface extends JpaRepository<PostEntity,Long>{
+    List<PostEntity> findAllByUserEntities(UserEntity userEntity);
 }

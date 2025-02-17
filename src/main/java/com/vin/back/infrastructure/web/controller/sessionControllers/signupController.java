@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vin.back.application.service.sessionServices.SignupService;
-import com.vin.back.domain.model.userEntity;
+import com.vin.back.domain.model.UserEntity;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +21,7 @@ public class SignupController {
     private SignupService signupService;
 
     @PostMapping
-    public ResponseEntity<Void> signup(@ModelAttribute userEntity formData) {
+    public ResponseEntity<Void> signup(@ModelAttribute UserEntity formData) {
         try {
             boolean isSaved = signupService.signup(formData);
             if (isSaved) {

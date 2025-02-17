@@ -6,15 +6,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.vin.back.domain.model.userEntity;
+import com.vin.back.domain.model.UserEntity;
 
-public interface JpaUserRepositoryInterface extends JpaRepository<userEntity, Long>{
-    userEntity findByEmail(String email);
-    userEntity findByUsername(String username);
+public interface JpaUserRepositoryInterface extends JpaRepository<UserEntity, Long>{
+    UserEntity findByEmail(String email);
+    UserEntity findByUsername(String username);
 
     @Query("SELECT f.userFollowerEntity FROM followEntity f WHERE f.userFollowedEntity.username = :username")
-    List<userEntity> findFollowersByUsername(@Param("username") String username);
+    List<UserEntity> findFollowersByUsername(@Param("username") String username);
 
     @Query("SELECT f.userFollowedEntity FROM followEntity f WHERE f.userFollowerEntity.username = :username")
-    List<userEntity> findFollowedByUsername(@Param("username") String username);
+    List<UserEntity> findFollowedByUsername(@Param("username") String username);
 }

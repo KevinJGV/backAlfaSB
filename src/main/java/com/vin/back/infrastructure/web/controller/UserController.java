@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vin.back.application.dto.ShortUserDTO;
 import com.vin.back.application.dto.UserDTO;
 import com.vin.back.application.service.UserService;
+import com.vin.back.domain.model.UserEntity;
+
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 @RestController
 @RequestMapping("/api/user")
@@ -33,5 +38,10 @@ public class UserController {
     @GetMapping("/{username}/followed")
     public ResponseEntity<List<ShortUserDTO>> getFollowed(@PathVariable String username) {
         return ResponseEntity.ok(userService.getFollowed(username));
+    }
+
+    @PutMapping
+    public ResponseEntity<UserEntity> updateUser(@ModelAttribute UserEntity userEntity) {
+        return ResponseEntity.ok(userService.save(userEntity));
     }
 }

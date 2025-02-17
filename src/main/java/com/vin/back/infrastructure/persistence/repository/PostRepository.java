@@ -7,37 +7,37 @@ import org.springframework.stereotype.Repository;
 
 import com.vin.back.application.port.out.PostPort;
 import com.vin.back.application.port.out.respository.JpaPostRepositoryInterface;
-import com.vin.back.domain.model.postEntity;
-import com.vin.back.domain.model.userEntity;
+import com.vin.back.domain.model.PostEntity;
+import com.vin.back.domain.model.UserEntity;
 import com.vin.back.infrastructure.exception.NotFoundPostException;
 
 @Repository
-public class JpaPostRepository implements PostPort{
+public class PostRepository implements PostPort{
     @Autowired
     private JpaPostRepositoryInterface repository;
 
     @Override
-    public postEntity findById(Long id) {
+    public PostEntity findById(Long id) {
         return repository.findById(id).orElseThrow(() -> new NotFoundPostException("Post Inexistente."));
     }
 
     @Override
-    public List<postEntity> findAll() {
+    public List<PostEntity> findAll() {
         return repository.findAll();
     }
 
     @Override
-    public List<postEntity> getByUser(userEntity userEntity) {
+    public List<PostEntity> getByUser(UserEntity userEntity) {
         return repository.findAllByUserEntities(userEntity);
     }
 
     @Override
-    public postEntity save(postEntity entity) {
+    public PostEntity save(PostEntity entity) {
         return repository.save(entity);
     }
 
     @Override
-    public boolean delete(postEntity entity) {
+    public boolean delete(PostEntity entity) {
         try {
             repository.delete(entity);
             return true;

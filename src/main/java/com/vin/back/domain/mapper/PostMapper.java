@@ -7,10 +7,10 @@ import com.vin.back.application.dto.HashtagDTO;
 import com.vin.back.application.dto.LikeDTO;
 import com.vin.back.application.dto.PostDTO;
 import com.vin.back.application.dto.ShortUserDTO;
-import com.vin.back.domain.model.postEntity;
+import com.vin.back.domain.model.PostEntity;
 
 public class PostMapper {
-    public static List<PostDTO> toDTO(List<postEntity> postEntities) {
+    public static List<PostDTO> toDTO(List<PostEntity> postEntities) {
         return postEntities.stream().map(post -> {
             ShortUserDTO user = UserMapper.toDTO(post.getUserEntity());
             List<HashtagDTO> hashtags = HashtagMapper.toDTOFromPH(post.getPostHashtagEntities());
@@ -20,7 +20,7 @@ public class PostMapper {
         }).toList();
     }
 
-    public static PostDTO toDTO(postEntity postEntity) {
+    public static PostDTO toDTO(PostEntity postEntity) {
         ShortUserDTO user = UserMapper.toDTO(postEntity.getUserEntity());
         List<HashtagDTO> hashtags = HashtagMapper.toDTOFromPH(postEntity.getPostHashtagEntities());
         List<LikeDTO> likes = LikeMapper.toDTO(postEntity.getLikeEntities());

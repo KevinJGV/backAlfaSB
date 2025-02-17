@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.vin.back.application.port.out.sesisonPort.TokenGeneratorPort;
-import com.vin.back.domain.model.userEntity;
+import com.vin.back.domain.model.UserEntity;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -32,7 +32,7 @@ public class TokenerComponent implements TokenGeneratorPort{
     }
 
     @Override
-    public String generate(userEntity usuario) {
+    public String generate(UserEntity usuario) {
         return Jwts.builder()
         .setSubject(usuario.getUsername())
         .setIssuedAt(new Date())

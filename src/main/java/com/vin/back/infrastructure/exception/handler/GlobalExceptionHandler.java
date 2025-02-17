@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.vin.back.application.exception.unknownUserException;
-import com.vin.back.application.exception.unvalidatedCredentialException;
+import com.vin.back.application.exception.UnvalidatedCredentialException;
 import com.vin.back.infrastructure.exception.NotFoundEmailException;
 import com.vin.back.infrastructure.exception.NotFoundUsernameException;
 import com.vin.back.infrastructure.exception.SecurityConfigException;
 import com.vin.back.infrastructure.exception.TokenFilteringException;
+import com.vin.back.infrastructure.exception.UnknownUserException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -20,15 +20,15 @@ public class GlobalExceptionHandler {
 
     // application Exceptions
 
-    @ExceptionHandler(unknownUserException.class)
+    @ExceptionHandler(UnknownUserException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String unknownUserHandler(unknownUserException e) {
+    public String unknownUserHandler(UnknownUserException e) {
         return e.getMessage();
     }
     
-    @ExceptionHandler(unvalidatedCredentialException.class)
+    @ExceptionHandler(UnvalidatedCredentialException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public String unvalidatedCredentialHandler(unvalidatedCredentialException e) {
+    public String unvalidatedCredentialHandler(UnvalidatedCredentialException e) {
         return e.getMessage();
     }
 

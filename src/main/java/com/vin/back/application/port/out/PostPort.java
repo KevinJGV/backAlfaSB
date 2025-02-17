@@ -6,9 +6,9 @@ import com.vin.back.application.port.out.common.DeletePort;
 import com.vin.back.application.port.out.common.FindAllPort;
 import com.vin.back.application.port.out.common.FindByIdPort;
 import com.vin.back.application.port.out.common.SavePort;
-import com.vin.back.domain.model.postEntity;
-import com.vin.back.domain.model.userEntity;
+import com.vin.back.domain.model.PostEntity;
+import com.vin.back.domain.model.UserEntity;
 
-public interface PostPort extends FindByIdPort<postEntity>, FindAllPort<postEntity> ,SavePort<postEntity> ,DeletePort<postEntity>  {
-    List<postEntity> getByUser(userEntity userEntity);
+public interface PostPort extends FindByIdPort<PostEntity>, FindAllPort<PostEntity> ,SavePort<PostEntity> ,DeletePort<PostEntity>  {
+    List<PostEntity> getByUser(UserEntity userEntity);
 }

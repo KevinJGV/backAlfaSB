@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vin.back.application.service.sessionServices.AuthService;
-import com.vin.back.domain.model.userEntity;
+import com.vin.back.domain.model.UserEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
@@ -19,7 +19,7 @@ public class AuthController {
     private AuthService authService;
 
     @PostMapping
-    public ResponseEntity<String> auth(@ModelAttribute userEntity formData) {
+    public ResponseEntity<String> auth(@ModelAttribute UserEntity formData) {
         String token = authService.login(formData.getUsername(), formData.getPassword());
         return ResponseEntity.ok(token);
     }

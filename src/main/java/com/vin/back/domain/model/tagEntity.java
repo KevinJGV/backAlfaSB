@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tags")
-public class tagEntity {
+public class TagEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,21 +18,21 @@ public class tagEntity {
     
     @ManyToOne
     @JoinColumn(name = "idusertagged")
-    private userEntity userTaggedEntity;
+    private UserEntity userTaggedEntity;
 
     @ManyToOne
     @JoinColumn(name = "idusertagger")
-    private userEntity userTaggerEntity;
+    private UserEntity userTaggerEntity;
 
     @ManyToOne
     @JoinColumn(name = "idcomment")
-    private commentEntity commentEntity;
+    private CommentEntity commentEntity;
 
-    public tagEntity() {
+    public TagEntity() {
     }
 
-    public tagEntity(Long id, userEntity userTaggedEntity, userEntity userTaggerEntity,
-            com.vin.back.domain.model.commentEntity commentEntity) {
+    public TagEntity(Long id, UserEntity userTaggedEntity, UserEntity userTaggerEntity,
+            com.vin.back.domain.model.CommentEntity commentEntity) {
         this.id = id;
         this.userTaggedEntity = userTaggedEntity;
         this.userTaggerEntity = userTaggerEntity;
@@ -47,27 +47,27 @@ public class tagEntity {
         this.id = id;
     }
 
-    public userEntity getUserTaggedEntity() {
+    public UserEntity getUserTaggedEntity() {
         return userTaggedEntity;
     }
 
-    public void setUserTaggedEntity(userEntity userTaggedEntity) {
+    public void setUserTaggedEntity(UserEntity userTaggedEntity) {
         this.userTaggedEntity = userTaggedEntity;
     }
 
-    public userEntity getUserTaggerEntity() {
+    public UserEntity getUserTaggerEntity() {
         return userTaggerEntity;
     }
 
-    public void setUserTaggerEntity(userEntity userTaggerEntity) {
+    public void setUserTaggerEntity(UserEntity userTaggerEntity) {
         this.userTaggerEntity = userTaggerEntity;
     }
 
-    public commentEntity getCommentEntity() {
+    public CommentEntity getCommentEntity() {
         return commentEntity;
     }
 
-    public void setCommentEntity(commentEntity commentEntity) {
+    public void setCommentEntity(CommentEntity commentEntity) {
         this.commentEntity = commentEntity;
     }
 

@@ -17,7 +17,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "comments")
-public class commentEntity {
+public class CommentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,23 +25,23 @@ public class commentEntity {
 
     @ManyToOne
     @JoinColumn(name = "iduser")
-    private userEntity userEntity;
+    private UserEntity userEntity;
 
     @ManyToOne
     @JoinColumn(name = "idpost")
-    private postEntity postEntity;
+    private PostEntity postEntity;
 
     @OneToMany(mappedBy = "commentEntity", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<tagEntity> tagEntities = new ArrayList<>();
+    private List<TagEntity> tagEntities = new ArrayList<>();
 
     @Column(length = 200)
     private String content;
 
-    public commentEntity() {
+    public CommentEntity() {
     }
 
-    public commentEntity(Long id, com.vin.back.domain.model.userEntity userEntity,
-            com.vin.back.domain.model.postEntity postEntity, List<tagEntity> tagEntities, String content) {
+    public CommentEntity(Long id, com.vin.back.domain.model.UserEntity userEntity,
+            com.vin.back.domain.model.PostEntity postEntity, List<TagEntity> tagEntities, String content) {
         this.id = id;
         this.userEntity = userEntity;
         this.postEntity = postEntity;
@@ -57,27 +57,27 @@ public class commentEntity {
         this.id = id;
     }
 
-    public userEntity getUserEntity() {
+    public UserEntity getUserEntity() {
         return userEntity;
     }
 
-    public void setUserEntity(userEntity userEntity) {
+    public void setUserEntity(UserEntity userEntity) {
         this.userEntity = userEntity;
     }
 
-    public postEntity getPostEntity() {
+    public PostEntity getPostEntity() {
         return postEntity;
     }
 
-    public void setPostEntity(postEntity postEntity) {
+    public void setPostEntity(PostEntity postEntity) {
         this.postEntity = postEntity;
     }
 
-    public List<tagEntity> getTagEntities() {
+    public List<TagEntity> getTagEntities() {
         return tagEntities;
     }
 
-    public void setTagEntities(List<tagEntity> tagEntities) {
+    public void setTagEntities(List<TagEntity> tagEntities) {
         this.tagEntities = tagEntities;
     }
 
