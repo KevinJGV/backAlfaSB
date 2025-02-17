@@ -7,9 +7,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vin.back.application.dto.FollowDTO;
 import com.vin.back.application.dto.ShortUserDTO;
 import com.vin.back.application.dto.UserDTO;
 import com.vin.back.application.service.UserService;
@@ -27,7 +29,12 @@ public class UserController {
 
     @GetMapping("/{username}")
     public ResponseEntity<UserDTO> getUserEntity(@PathVariable String username) {
-        return ResponseEntity.ok(userService.getUserDTOByUsername(username));
+        return ResponseEntity.ok(userService.getUserByUsername(username));
+    }
+
+    @PutMapping
+    public ResponseEntity<ShortUserDTO> updateUser(@ModelAttribute UserEntity userEntity) {
+        return ResponseEntity.ok(userService.save(userEntity));
     }
     
     @GetMapping("/{username}/followers")
@@ -40,8 +47,8 @@ public class UserController {
         return ResponseEntity.ok(userService.getFollowed(username));
     }
 
-    @PutMapping
-    public ResponseEntity<UserEntity> updateUser(@ModelAttribute UserEntity userEntity) {
-        return ResponseEntity.ok(userService.save(userEntity));
+    @PostMapping("/follow")
+    public ResponseEntity<Boolean> setfollow(@ModelAttribute FollowDTO followDTO) {
+        return ResponseEntity.ok(userService.toggleFollow(followDTO));
     }
 }

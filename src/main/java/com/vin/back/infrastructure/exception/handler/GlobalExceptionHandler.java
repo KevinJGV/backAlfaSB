@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.vin.back.application.exception.FollowingLogicException;
 import com.vin.back.application.exception.UnvalidatedCredentialException;
 import com.vin.back.infrastructure.exception.NotFoundEmailException;
 import com.vin.back.infrastructure.exception.NotFoundUsernameException;
@@ -20,15 +21,21 @@ public class GlobalExceptionHandler {
 
     // application Exceptions
 
+    @ExceptionHandler(FollowingLogicException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String FollowingLogicException(FollowingLogicException e) {
+        return e.getMessage();
+    }
+
     @ExceptionHandler(UnknownUserException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String unknownUserHandler(UnknownUserException e) {
+    public String UnknownUserHandler(UnknownUserException e) {
         return e.getMessage();
     }
     
     @ExceptionHandler(UnvalidatedCredentialException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public String unvalidatedCredentialHandler(UnvalidatedCredentialException e) {
+    public String UnvalidatedCredentialHandler(UnvalidatedCredentialException e) {
         return e.getMessage();
     }
 
@@ -53,12 +60,12 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(TokenFilteringException.class)
-    public ResponseEntity<String> tokenFilteringException(TokenFilteringException e) {
+    public ResponseEntity<String> TokenFilteringException(TokenFilteringException e) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token inválido o expirado.");
     }
     // @ExceptionHandler(.class)
     // @ResponseStatus(HttpStatus.)
-    // public String ( e) {
+    // public String Handler( e) {
     //     return e.getMessage();
     // }
 }

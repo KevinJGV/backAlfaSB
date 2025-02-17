@@ -18,4 +18,20 @@ public static List<TagDTO> toDTO(List<TagEntity> tagEntities) {
         ShortUserDTO user = new ShortUserDTO(tagEntity.getUserTaggedEntity());
         return new TagDTO(tagEntity.getId(), user);
     }
+
+    public static TagEntity toEntity(TagDTO tagDTO) {
+        TagEntity entity = new TagEntity();
+        entity.setId(tagDTO.getId());
+        entity.setUserTaggedEntity(UserMapper.toEntity(tagDTO.getUserTagged()));
+        return entity;
+    }
+
+    public static List<TagEntity> toEntity(List<TagDTO> tagDTOs) {
+        return tagDTOs.stream().map(tagDTO -> {
+            TagEntity entity = new TagEntity();
+            entity.setId(tagDTO.getId());
+            entity.setUserTaggedEntity(UserMapper.toEntity(tagDTO.getUserTagged()));
+            return entity;
+        }).toList();
+    }
 }

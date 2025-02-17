@@ -19,4 +19,9 @@ public class CommentRepository implements CommentPort {
     public List<CommentEntity> getByPostEntity(PostEntity post) {
         return repository.findByPostEntity(post);
     }
+
+    @Override
+    public CommentEntity save(CommentEntity entity) {
+        return repository.save(entity);
+    }
 }

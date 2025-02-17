@@ -1,13 +1,13 @@
 package com.vin.back.application.dto;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 public class NotificationDTO {
     private Long id;
 
-    private UserDTO userAction;
+    private ShortUserDTO userAction;
 
-    private UserDTO userNotificated;
+    private ShortUserDTO userNotified;
 
     private LikeDTO like;
 
@@ -17,16 +17,17 @@ public class NotificationDTO {
 
     private CommentDTO comment;
 
-    private LocalTime createdAt;
+    private LocalDateTime createdAt;
 
     public NotificationDTO() {
     }
 
-    public NotificationDTO(Long id, UserDTO userAction, UserDTO userNotificated, LikeDTO like, FollowDTO follow,
-            TagDTO tag, CommentDTO comment, LocalTime createdAt) {
+    public NotificationDTO(Long id, ShortUserDTO userAction, ShortUserDTO userNotificated, LikeDTO like,
+            FollowDTO follow,
+            TagDTO tag, CommentDTO comment, LocalDateTime createdAt) {
         this.id = id;
         this.userAction = userAction;
-        this.userNotificated = userNotificated;
+        this.userNotified = userNotificated;
         this.like = like;
         this.follow = follow;
         this.tag = tag;
@@ -42,20 +43,20 @@ public class NotificationDTO {
         this.id = id;
     }
 
-    public UserDTO getUserAction() {
+    public ShortUserDTO getUserAction() {
         return userAction;
     }
 
-    public void setUserAction(UserDTO userAction) {
+    public void setUserAction(ShortUserDTO userAction) {
         this.userAction = userAction;
     }
 
-    public UserDTO getUserNotificated() {
-        return userNotificated;
+    public ShortUserDTO getUserNotified() {
+        return userNotified;
     }
 
-    public void setUserNotificated(UserDTO userNotificated) {
-        this.userNotificated = userNotificated;
+    public void setUserNotified(ShortUserDTO userNotificated) {
+        this.userNotified = userNotificated;
     }
 
     public LikeDTO getLike() {
@@ -90,17 +91,17 @@ public class NotificationDTO {
         this.comment = comment;
     }
 
-    public LocalTime getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalTime createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
     @Override
     public String toString() {
-        return "NotificationDTO [id=" + id + ", userAction=" + userAction + ", userNotificated=" + userNotificated
+        return "NotificationDTO [id=" + id + ", userAction=" + userAction + ", userNotificated=" + userNotified
                 + ", like=" + like + ", follow=" + follow + ", tag=" + tag + ", comment=" + comment + ", createdAt="
                 + createdAt + "]";
     }

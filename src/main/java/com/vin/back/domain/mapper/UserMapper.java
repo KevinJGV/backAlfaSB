@@ -13,4 +13,13 @@ public class UserMapper {
     public static ShortUserDTO toDTO(UserEntity userEntity) {
         return new ShortUserDTO(userEntity);
     }
+
+    public static UserEntity toEntity(ShortUserDTO userDTO) {
+        UserEntity entity = new UserEntity();
+        entity.setId(userDTO.getId());
+        entity.setUsername(userDTO.getUsername());
+        entity.setFullname(userDTO.getFullname());
+        entity.setProfilephotouri(userDTO.getProfilephotouri());
+        return entity;
+    }
 }

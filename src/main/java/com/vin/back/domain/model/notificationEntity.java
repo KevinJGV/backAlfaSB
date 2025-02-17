@@ -1,6 +1,6 @@
 package com.vin.back.domain.model;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,7 +24,7 @@ public class NotificationEntity {
 
     @ManyToOne
     @JoinColumn(name ="idusernotificated", nullable = false)
-    private UserEntity userNotificatedEntity;
+    private UserEntity userNotifiedEntity;
 
     @ManyToOne
     @JoinColumn(name = "idlike")
@@ -42,18 +42,17 @@ public class NotificationEntity {
     @JoinColumn(name = "idcomment")
     private CommentEntity commentEntity;
 
-    private LocalTime createdAt;
+    private LocalDateTime createdAt;
 
     public NotificationEntity() {
     }
 
-    public NotificationEntity(Long id, UserEntity userActionEntity, UserEntity userNotificatedEntity,
-            com.vin.back.domain.model.LikeEntity likeEntity, com.vin.back.domain.model.FollowEntity followEntity,
-            com.vin.back.domain.model.TagEntity tagEntity, com.vin.back.domain.model.CommentEntity commentEntity,
-            LocalTime createdAt) {
+    public NotificationEntity(Long id, UserEntity userActionEntity, UserEntity userNotifiedEntity,
+            LikeEntity likeEntity, FollowEntity followEntity, TagEntity tagEntity, CommentEntity commentEntity,
+            LocalDateTime createdAt) {
         this.id = id;
         this.userActionEntity = userActionEntity;
-        this.userNotificatedEntity = userNotificatedEntity;
+        this.userNotifiedEntity = userNotifiedEntity;
         this.likeEntity = likeEntity;
         this.followEntity = followEntity;
         this.tagEntity = tagEntity;
@@ -77,12 +76,12 @@ public class NotificationEntity {
         this.userActionEntity = userActionEntity;
     }
 
-    public UserEntity getUserNotificatedEntity() {
-        return userNotificatedEntity;
+    public UserEntity getUserNotifiedEntity() {
+        return userNotifiedEntity;
     }
 
-    public void setUserNotificatedEntity(UserEntity userNotificatedEntity) {
-        this.userNotificatedEntity = userNotificatedEntity;
+    public void setUserNotifiedEntity(UserEntity userNotifiedEntity) {
+        this.userNotifiedEntity = userNotifiedEntity;
     }
 
     public LikeEntity getLikeEntity() {
@@ -117,19 +116,19 @@ public class NotificationEntity {
         this.commentEntity = commentEntity;
     }
 
-    public LocalTime getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalTime createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
     @Override
     public String toString() {
-        return "notificationEntity [id=" + id + ", userActionEntity=" + userActionEntity + ", userNotificatedEntity="
-                + userNotificatedEntity + ", likeEntity=" + likeEntity + ", followEntity=" + followEntity
-                + ", tagEntity=" + tagEntity + ", commentEntity=" + commentEntity + ", createdAt=" + createdAt + "]";
+        return "NotificationEntity [id=" + id + ", userActionEntity=" + userActionEntity + ", userNotifiedEntity="
+                + userNotifiedEntity + ", likeEntity=" + likeEntity + ", followEntity=" + followEntity + ", tagEntity="
+                + tagEntity + ", commentEntity=" + commentEntity + ", createdAt=" + createdAt + "]";
     }
 
 }

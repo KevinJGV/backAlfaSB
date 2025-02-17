@@ -18,4 +18,9 @@ public class HashtagRepository implements HashtagPort{
     public Optional<HashtagEntity> getByName(String name) {
         return Optional.of(repository.findByName(name));
     }
+
+    @Override
+    public HashtagEntity save(HashtagEntity entity) {
+        return repository.save(entity);
+    }
 }

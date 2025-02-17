@@ -21,4 +21,24 @@ public static List<CommentDTO> toDTO(List<CommentEntity> commentEntities) {
         List<TagDTO> tags = TagMapper.toDTO(commentEntity.getTagEntities());
         return new CommentDTO(commentEntity, user,tags);
     }
+
+    public static CommentEntity toEntity(CommentDTO commentDTO) {
+        CommentEntity entity = new CommentEntity();
+        entity.setId(commentDTO.getId());
+        entity.setUserEntity(UserMapper.toEntity(commentDTO.getUser()));
+        entity.setContent(commentDTO.getContent());
+        entity.setTagEntities(TagMapper.toEntity(commentDTO.getTags()));
+        return entity;
+    }
+
+    public static List<CommentEntity> toEntity(List<CommentDTO> commentDTOs) {
+        return commentDTOs.stream().map(commentDTO -> {
+            CommentEntity entity = new CommentEntity();
+            entity.setId(commentDTO.getId());
+            entity.setUserEntity(UserMapper.toEntity(commentDTO.getUser()));
+            entity.setContent(commentDTO.getContent());
+            entity.setTagEntities(TagMapper.toEntity(commentDTO.getTags()));
+            return entity;
+        }).toList();
+    }
 }

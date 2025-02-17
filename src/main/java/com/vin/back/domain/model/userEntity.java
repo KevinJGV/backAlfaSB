@@ -44,12 +44,6 @@ public class UserEntity {
     @Column(nullable = true)
     private String biography;
 
-    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<LikeEntity> likeEntities = new ArrayList<>();
-
-    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CommentEntity> commentEntities = new ArrayList<>();
-
     @OneToMany(mappedBy = "userFollowedEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<FollowEntity> followingEntities = new ArrayList<>();
 
@@ -62,21 +56,18 @@ public class UserEntity {
     public UserEntity() {
     }
 
-    public UserEntity(Long id, String userName, String email, String fullName, LocalDate birthDate, Long phone,
-            String password, String profilePhotoURI, String biography, List<LikeEntity> likesEntities,
-            List<CommentEntity> commentsEntities, List<FollowEntity> followingEntities,
+    public UserEntity(Long id, String username, String email, String fullname, LocalDate birthdate, Long phone,
+            String password, String profilephotouri, String biography, List<FollowEntity> followingEntities,
             List<FollowEntity> followerEntities, List<NotificationEntity> notificationEntities) {
         this.id = id;
-        this.username = userName;
+        this.username = username;
         this.email = email;
-        this.fullname = fullName;
-        this.birthdate = birthDate;
+        this.fullname = fullname;
+        this.birthdate = birthdate;
         this.phone = phone;
         this.password = password;
-        this.profilephotouri = profilePhotoURI;
+        this.profilephotouri = profilephotouri;
         this.biography = biography;
-        this.likeEntities = likesEntities;
-        this.commentEntities = commentsEntities;
         this.followingEntities = followingEntities;
         this.followerEntities = followerEntities;
         this.notificationEntities = notificationEntities;
@@ -94,8 +85,8 @@ public class UserEntity {
         return username;
     }
 
-    public void setUsername(String userName) {
-        this.username = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -110,16 +101,16 @@ public class UserEntity {
         return fullname;
     }
 
-    public void setFullname(String fullName) {
-        this.fullname = fullName;
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     public LocalDate getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(LocalDate birthDate) {
-        this.birthdate = birthDate;
+    public void setBirthdate(LocalDate birthdate) {
+        this.birthdate = birthdate;
     }
 
     public Long getPhone() {
@@ -142,8 +133,8 @@ public class UserEntity {
         return profilephotouri;
     }
 
-    public void setProfilephotouri(String profilePhotoURI) {
-        this.profilephotouri = profilePhotoURI;
+    public void setProfilephotouri(String profilephotouri) {
+        this.profilephotouri = profilephotouri;
     }
 
     public String getBiography() {
@@ -152,22 +143,6 @@ public class UserEntity {
 
     public void setBiography(String biography) {
         this.biography = biography;
-    }
-
-    public List<LikeEntity> getLikeEntities() {
-        return likeEntities;
-    }
-
-    public void setLikeEntities(List<LikeEntity> likesEntities) {
-        this.likeEntities = likesEntities;
-    }
-
-    public List<CommentEntity> getCommentEntities() {
-        return commentEntities;
-    }
-
-    public void setCommentEntities(List<CommentEntity> commentsEntities) {
-        this.commentEntities = commentsEntities;
     }
 
     public List<FollowEntity> getFollowingEntities() {
@@ -196,12 +171,10 @@ public class UserEntity {
 
     @Override
     public String toString() {
-        return "userEntity [id=" + id + ", userName=" + username + ", email=" + email + ", fullName=" + fullname
-                + ", birthDate=" + birthdate + ", phone=" + phone + ", password=" + password + ", profilePhotoURI="
-                + profilephotouri + ", biography=" + biography + ", likesEntities=" + likeEntities
-                + ", commentsEntities=" + commentEntities + ", followingEntities=" + followingEntities
+        return "UserEntity [id=" + id + ", username=" + username + ", email=" + email + ", fullname=" + fullname
+                + ", birthdate=" + birthdate + ", phone=" + phone + ", password=" + password + ", profilephotouri="
+                + profilephotouri + ", biography=" + biography + ", followingEntities=" + followingEntities
                 + ", followerEntities=" + followerEntities + ", notificationEntities=" + notificationEntities + "]";
     }
 
-    
 }
