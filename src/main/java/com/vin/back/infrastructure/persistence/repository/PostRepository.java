@@ -28,7 +28,7 @@ public class PostRepository implements PostPort{
 
     @Override
     public List<PostEntity> getByUser(UserEntity userEntity) {
-        return repository.findAllByUserEntities(userEntity);
+        return repository.findAllByUserEntity(userEntity);
     }
 
     @Override

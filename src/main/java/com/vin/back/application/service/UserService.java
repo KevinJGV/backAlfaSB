@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.vin.back.application.dto.FollowDTO;
 import com.vin.back.application.dto.ShortUserDTO;
@@ -17,6 +18,7 @@ import com.vin.back.domain.mapper.UserMapper;
 import com.vin.back.domain.model.FollowEntity;
 import com.vin.back.domain.model.UserEntity;
 
+@Service
 public class UserService implements UserCaseUse {
 
     @Autowired

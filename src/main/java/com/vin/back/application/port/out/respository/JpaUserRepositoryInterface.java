@@ -12,9 +12,9 @@ public interface JpaUserRepositoryInterface extends JpaRepository<UserEntity, Lo
     UserEntity findByEmail(String email);
     UserEntity findByUsername(String username);
 
-    @Query("SELECT f.userFollowerEntity FROM followEntity f WHERE f.userFollowedEntity.username = :username")
+    @Query("SELECT f.userFollowerEntity FROM FollowEntity f WHERE f.userFollowedEntity.username = :username")
     List<UserEntity> findFollowersByUsername(@Param("username") String username);
 
-    @Query("SELECT f.userFollowedEntity FROM followEntity f WHERE f.userFollowerEntity.username = :username")
+    @Query("SELECT f.userFollowedEntity FROM FollowEntity f WHERE f.userFollowerEntity.username = :username")
     List<UserEntity> findFollowedByUsername(@Param("username") String username);
 }

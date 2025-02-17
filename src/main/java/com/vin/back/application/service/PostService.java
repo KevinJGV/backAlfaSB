@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.vin.back.application.dto.CommentDTO;
 import com.vin.back.application.dto.LikeDTO;
@@ -26,6 +27,7 @@ import com.vin.back.domain.model.PostHashtagEntity;
 import com.vin.back.domain.model.TagEntity;
 import com.vin.back.domain.model.UserEntity;
 
+@Service
 public class PostService implements PostCaseUse {
 
     @Autowired

@@ -1,6 +1,7 @@
 package com.vin.back.infrastructure.web.controller.sessionControllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,6 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vin.back.application.service.sessionServices.AuthService;
 import com.vin.back.domain.model.UserEntity;
+
+import jakarta.servlet.http.HttpServletRequest;
+
 import org.springframework.web.bind.annotation.GetMapping;
 
 
@@ -27,6 +31,20 @@ public class AuthController {
     @GetMapping("/authTest")
     public String getMethodName() {
         return "OK!";
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(HttpServletRequest request) {
+        
+        String token = request.getHeader("Authorization");
+        
+        if (token != null && token.startsWith("Bearer ")) {
+            token = token.substring(7);
+            authService.logout(token);
+            return ResponseEntity.ok("Sesión cerrada correctamente.");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Token inválido o inexistente.");
+        }
     }
     
 }

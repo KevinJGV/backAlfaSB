@@ -8,5 +8,5 @@ import com.vin.back.domain.model.PostEntity;
 import com.vin.back.domain.model.UserEntity;
 
 public interface JpaPostRepositoryInterface extends JpaRepository<PostEntity,Long>{
-    List<PostEntity> findAllByUserEntities(UserEntity userEntity);
+    List<PostEntity> findAllByUserEntity(UserEntity userEntity);
 }

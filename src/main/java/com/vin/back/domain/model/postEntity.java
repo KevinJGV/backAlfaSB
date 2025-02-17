@@ -34,7 +34,8 @@ public class PostEntity {
     private String imageAttached;
 
     private LocalDate uploadDate;
-
+    
+    @Column(nullable = true)
     private boolean modified = false;
 
     @OneToMany(mappedBy = "postEntity", cascade = CascadeType.ALL, orphanRemoval = true)

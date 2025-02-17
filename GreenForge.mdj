@@ -3502,7 +3502,8 @@
 							},
 							"name": "modified",
 							"type": "BOOLEAN",
-							"length": 0
+							"length": 0,
+							"nullable": true
 						}
 					]
 				}
