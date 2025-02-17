@@ -2,6 +2,7 @@ package com.vin.back.infrastructure.security;
 
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
+import java.util.Base64;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -28,6 +29,7 @@ public class TokenerComponent implements TokenGeneratorPort{
 
     @PostConstruct
     public void init() {
+        byte[] decodedKey = Base64.getDecoder().decode(jwtSecret);
         key = Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
     }
 
@@ -45,6 +47,7 @@ public class TokenerComponent implements TokenGeneratorPort{
     public boolean validate(String token) {
         try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
+            System.out.println("Token válido");
             return true;
         } catch (Exception e) {
             return false;

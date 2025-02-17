@@ -16,7 +16,7 @@ public class PostDTO {
 
     private LocalDate uploadDate;
 
-    private boolean modified;
+    private Boolean modified;
     private List<HashtagDTO> hashtags;
     private List<String> rawHashtags;
     private List<LikeDTO> likes;
@@ -78,7 +78,7 @@ public class PostDTO {
         this.uploadDate = uploadDate;
     }
 
-    public boolean isModified() {
+    public Boolean isModified() {
         return modified;
     }
 

@@ -60,9 +60,10 @@ public class JwtAuthFilterChain extends OncePerRequestFilter {
     private String validateToken(HttpServletRequest request) {
         String bearerTkn = request.getHeader("Authorization");
         if (bearerTkn != null && bearerTkn.startsWith("Bearer ")) {
+            System.out.println("Bearer: " + bearerTkn);
             return bearerTkn.substring(7);
         } else {
-            System.out.println("Bearer: " + bearerTkn);
+            System.out.println("Error Bearer: " + bearerTkn);
         }
         return null;
     }

@@ -36,7 +36,7 @@ public class PostEntity {
     private LocalDate uploadDate;
     
     @Column(nullable = true)
-    private boolean modified = false;
+    private Boolean modified = false;
 
     @OneToMany(mappedBy = "postEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PostHashtagEntity> postHashtagEntities = new ArrayList<>();
@@ -104,7 +104,7 @@ public class PostEntity {
         this.uploadDate = uploadDate;
     }
 
-    public boolean isModified() {
+    public Boolean isModified() {
         return modified;
     }
 
