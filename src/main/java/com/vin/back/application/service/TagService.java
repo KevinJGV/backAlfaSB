@@ -1,5 +1,7 @@
 package com.vin.back.application.service;
 
-public class TagService {
+import com.vin.back.application.port.in.TagCaseUse;
+
+public class TagService implements TagCaseUse {
 
 }

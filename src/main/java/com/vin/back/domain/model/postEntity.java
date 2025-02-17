@@ -35,6 +35,8 @@ public class postEntity {
 
     private LocalDate uploadDate;
 
+    private boolean modified = false;
+
     @OneToMany(mappedBy = "postEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<postHashtagEntity> postHashtagEntities = new ArrayList<>();
 
@@ -45,6 +47,20 @@ public class postEntity {
     private List<commentEntity> commentEntities = new ArrayList<>();
 
     public postEntity() {
+    }
+
+    public postEntity(Long id, com.vin.back.domain.model.userEntity userEntity, String content, String imageAttached,
+            LocalDate uploadDate, boolean modified, List<postHashtagEntity> postHashtagEntities,
+            List<likeEntity> likeEntities, List<commentEntity> commentEntities) {
+        this.id = id;
+        this.userEntity = userEntity;
+        this.content = content;
+        this.imageAttached = imageAttached;
+        this.uploadDate = uploadDate;
+        this.modified = modified;
+        this.postHashtagEntities = postHashtagEntities;
+        this.likeEntities = likeEntities;
+        this.commentEntities = commentEntities;
     }
 
     public Long getId() {
@@ -87,35 +103,43 @@ public class postEntity {
         this.uploadDate = uploadDate;
     }
 
+    public boolean isModified() {
+        return modified;
+    }
+
+    public void setModified(boolean modified) {
+        this.modified = modified;
+    }
+
     public List<postHashtagEntity> getPostHashtagEntities() {
         return postHashtagEntities;
     }
 
-    public void setPostHashtagEntities(List<postHashtagEntity> postsHashtagsEntities) {
-        this.postHashtagEntities = postsHashtagsEntities;
+    public void setPostHashtagEntities(List<postHashtagEntity> postHashtagEntities) {
+        this.postHashtagEntities = postHashtagEntities;
     }
 
     public List<likeEntity> getLikeEntities() {
         return likeEntities;
     }
 
-    public void setLikeEntities(List<likeEntity> likesEntities) {
-        this.likeEntities = likesEntities;
+    public void setLikeEntities(List<likeEntity> likeEntities) {
+        this.likeEntities = likeEntities;
     }
 
     public List<commentEntity> getCommentEntities() {
         return commentEntities;
     }
 
-    public void setCommentEntities(List<commentEntity> commentsEntities) {
-        this.commentEntities = commentsEntities;
+    public void setCommentEntities(List<commentEntity> commentEntities) {
+        this.commentEntities = commentEntities;
     }
 
     @Override
     public String toString() {
         return "postEntity [id=" + id + ", userEntity=" + userEntity + ", content=" + content + ", imageAttached="
-                + imageAttached + ", uploadDate=" + uploadDate + ", postsHashtagsEntities=" + postHashtagEntities
-                + ", likesEntities=" + likeEntities + ", commentsEntities=" + commentEntities + "]";
+                + imageAttached + ", uploadDate=" + uploadDate + ", modified=" + modified + ", postHashtagEntities="
+                + postHashtagEntities + ", likeEntities=" + likeEntities + ", commentEntities=" + commentEntities + "]";
     }
 
 }

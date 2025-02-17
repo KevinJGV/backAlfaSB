@@ -1,5 +1,7 @@
 package com.vin.back.application.service;
 
-public class HashtagService {
+import com.vin.back.application.port.in.HashtagCaseUse;
+
+public class HashtagService implements HashtagCaseUse{
 
 }

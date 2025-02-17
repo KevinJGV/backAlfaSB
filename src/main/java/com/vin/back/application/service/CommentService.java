@@ -1,5 +1,7 @@
 package com.vin.back.application.service;
 
-public class CommentService {
+import com.vin.back.application.port.in.CommentCaseUse;
+
+public class CommentService implements CommentCaseUse{
 
 }

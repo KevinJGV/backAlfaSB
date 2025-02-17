@@ -20,7 +20,7 @@ public class SignupService implements SignupCaseUse{
 
     @Override
     public boolean signup(userEntity user) {
-        userEntity findedUser = searchUserPort.searchEmail(user.getEmail());
+        userEntity findedUser = searchUserPort.getByEmail(user.getEmail());
         if (findedUser == null) {
             user.setPassword(encoderPort.encode(user.getPassword()));
             savePort.save(user);

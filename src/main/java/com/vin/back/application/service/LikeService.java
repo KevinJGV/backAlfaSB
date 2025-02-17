@@ -1,5 +1,7 @@
 package com.vin.back.application.service;
 
-public class LikeService {
+import com.vin.back.application.port.in.LikeCaseUse;
+
+public class LikeService implements LikeCaseUse{
 
 }

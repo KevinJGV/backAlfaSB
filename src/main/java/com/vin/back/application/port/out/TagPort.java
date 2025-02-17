@@ -1,5 +1,5 @@
 package com.vin.back.application.port.out;
 
-public interface FollowPort {
+public interface TagPort {
 
 }

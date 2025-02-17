@@ -1,5 +1,7 @@
 package com.vin.back.application.service;
 
-public class NotificationService {
+import com.vin.back.application.port.in.NotificationCaseUse;
+
+public class NotificationService implements NotificationCaseUse{
 
 }

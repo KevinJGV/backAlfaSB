@@ -1,5 +1,5 @@
 package com.vin.back.application.port.out;
 
-public class CommentPort {
+public interface CommentPort {
 
 }

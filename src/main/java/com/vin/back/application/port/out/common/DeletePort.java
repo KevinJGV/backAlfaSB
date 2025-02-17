@@ -1,5 +1,5 @@
 package com.vin.back.application.port.out.common;
 
-public interface DeletePort<ID> {
-    void delete(ID id);
+public interface DeletePort<T>{
+    boolean delete(T entity);
 }

@@ -13,7 +13,7 @@ import com.vin.back.domain.model.userEntity;
 @Service
 public class AuthService implements AuthCaseUse{
     @Autowired
-    private UserPort searchUserPort;
+    private UserPort UserPort;
     @Autowired
     private EncoderPort encoderPort;
     @Autowired
@@ -23,7 +23,7 @@ public class AuthService implements AuthCaseUse{
 
     @Override
     public String login(String username, String password) {
-        userEntity user = searchUserPort.searchUsername(username);
+        userEntity user = UserPort.getByUsername(username);
 
         if (!encoderPort.matches(password, user.getPassword())) {
             throw new unvalidatedCredentialException("Credenciales incorrectas");

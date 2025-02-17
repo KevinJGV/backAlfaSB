@@ -1,5 +1,7 @@
 package com.vin.back.application.service;
 
-public class FollowService {
+import com.vin.back.application.port.in.FollowCaseUse;
+
+public class FollowService implements FollowCaseUse{
 
 }

@@ -1,6 +1,10 @@
 package com.vin.back.domain.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -26,6 +31,9 @@ public class commentEntity {
     @JoinColumn(name = "idpost")
     private postEntity postEntity;
 
+    @OneToMany(mappedBy = "commentEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<tagEntity> tagEntities = new ArrayList<>();
+
     @Column(length = 200)
     private String content;
 
@@ -33,10 +41,11 @@ public class commentEntity {
     }
 
     public commentEntity(Long id, com.vin.back.domain.model.userEntity userEntity,
-            com.vin.back.domain.model.postEntity postEntity, String content) {
+            com.vin.back.domain.model.postEntity postEntity, List<tagEntity> tagEntities, String content) {
         this.id = id;
         this.userEntity = userEntity;
         this.postEntity = postEntity;
+        this.tagEntities = tagEntities;
         this.content = content;
     }
 
@@ -64,6 +73,14 @@ public class commentEntity {
         this.postEntity = postEntity;
     }
 
+    public List<tagEntity> getTagEntities() {
+        return tagEntities;
+    }
+
+    public void setTagEntities(List<tagEntity> tagEntities) {
+        this.tagEntities = tagEntities;
+    }
+
     public String getContent() {
         return content;
     }
@@ -74,8 +91,9 @@ public class commentEntity {
 
     @Override
     public String toString() {
-        return "commentEntity [id=" + id + ", userEntity=" + userEntity + ", postEntity=" + postEntity + ", content="
-                + content + "]";
+        return "commentEntity [id=" + id + ", userEntity=" + userEntity + ", postEntity=" + postEntity
+                + ", tagEntities=" + tagEntities + ", content=" + content + "]";
     }
+
 
 }
