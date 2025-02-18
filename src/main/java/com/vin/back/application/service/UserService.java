@@ -46,8 +46,8 @@ public class UserService implements UserCaseUse {
     }
 
     @Override
-    public ShortUserDTO save(UserEntity userEntity) {
-        return UserMapper.toDTO(userPort.save(userEntity));
+    public ShortUserDTO save(ShortUserDTO shortUserDTO) {
+        return UserMapper.toDTO(userPort.save(UserMapper.toEntity(shortUserDTO)));
     }
 
     @Override

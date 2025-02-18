@@ -15,7 +15,6 @@ import com.vin.back.application.dto.FollowDTO;
 import com.vin.back.application.dto.ShortUserDTO;
 import com.vin.back.application.dto.UserDTO;
 import com.vin.back.application.service.UserService;
-import com.vin.back.domain.model.UserEntity;
 
 import org.springframework.web.bind.annotation.PutMapping;
 
@@ -28,12 +27,12 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/{username}")
-    public ResponseEntity<UserDTO> getUserEntity(@PathVariable String username) {
+    public ResponseEntity<UserDTO> getUser(@PathVariable String username) {
         return ResponseEntity.ok(userService.getUserByUsername(username));
     }
 
     @PutMapping
-    public ResponseEntity<ShortUserDTO> updateUser(@ModelAttribute UserEntity userEntity) {
+    public ResponseEntity<ShortUserDTO> updateUser(@ModelAttribute ShortUserDTO userEntity) {
         return ResponseEntity.ok(userService.save(userEntity));
     }
     

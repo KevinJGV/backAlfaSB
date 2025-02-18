@@ -50,6 +50,8 @@ public class PostService implements PostCaseUse {
 
     @Override
     public List<PostDTO> getPosts() {
+        List<PostDTO> posts = PostMapper.toDTO(postPort.findAll());
+        System.out.println(posts);
         return PostMapper.toDTO(postPort.findAll());
     }
 

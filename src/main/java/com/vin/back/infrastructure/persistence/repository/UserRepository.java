@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.vin.back.application.port.out.respository.JpaUserRepositoryInterface;
-import com.vin.back.application.dto.FollowDTO;
 import com.vin.back.application.port.out.UserPort;
 import com.vin.back.domain.model.UserEntity;
 import com.vin.back.infrastructure.exception.UnknownUserException;
