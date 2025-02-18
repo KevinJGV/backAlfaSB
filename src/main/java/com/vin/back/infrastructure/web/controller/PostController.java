@@ -1,6 +1,8 @@
 package com.vin.back.infrastructure.web.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,11 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vin.back.application.dto.CommentDTO;
 import com.vin.back.application.dto.LikeDTO;
 import com.vin.back.application.dto.PostDTO;
+import com.vin.back.application.service.CommentService;
+import com.vin.back.application.service.LikeService;
 import com.vin.back.application.service.PostService;
 import com.vin.back.domain.model.CommentEntity;
 import com.vin.back.domain.model.PostEntity;
 
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/api/post")
@@ -28,6 +33,12 @@ public class PostController {
 
     @Autowired
     private PostService postService;
+
+    @Autowired
+    private LikeService likeService;
+
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping
     public ResponseEntity<List<PostDTO>> getPosts() {
@@ -43,7 +54,7 @@ public class PostController {
     public ResponseEntity<PostEntity> updatePost(@ModelAttribute PostDTO post) {
         return ResponseEntity.ok(postService.setPost(post));
     }
-    
+
     @PostMapping
     public ResponseEntity<PostEntity> setPost(@ModelAttribute PostDTO post) {
         return ResponseEntity.ok(postService.setPost(post));
@@ -63,4 +74,16 @@ public class PostController {
     public ResponseEntity<CommentEntity> setComment(@ModelAttribute CommentDTO commentDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(postService.setComment(commentDTO));
     }
+
+    @GetMapping("/interactions")
+    public ResponseEntity<Map<String, Boolean>> checkUserInteractions(
+            @RequestBody Map<String, String> interactionData) {
+        boolean hasLiked = likeService.hasUserLiked(Long.valueOf(interactionData.get("postId")), interactionData.get("username"));
+        boolean hasCommented = commentService.hasUserCommented(Long.valueOf(interactionData.get("postId")), interactionData.get("username"));
+        Map<String, Boolean> interactions = new HashMap<>();
+        interactions.put("liked", hasLiked);
+        interactions.put("commented", hasCommented);
+        return ResponseEntity.ok(interactions);
+    }
+
 }

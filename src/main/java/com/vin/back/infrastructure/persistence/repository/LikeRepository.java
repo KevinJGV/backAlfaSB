@@ -17,6 +17,11 @@ public class LikeRepository implements LikePort{
     private JpaLikeRepositoryInterface repository;
 
     @Override
+    public boolean existsByPostEntityAndUserEntity(PostEntity post, UserEntity user) {
+        return repository.existsByPostEntityAndUserEntity(post, user);
+    }
+
+    @Override
     public Optional<LikeEntity> getByPostEntityAndUserEntity(PostEntity post, UserEntity user) {
         return repository.findByPostEntityAndUserEntity(post, user);
     }

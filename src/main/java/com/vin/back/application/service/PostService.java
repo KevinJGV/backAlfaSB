@@ -119,7 +119,7 @@ public class PostService implements PostCaseUse {
         newComment.setUserEntity(user);
 
         List<TagEntity> tags = commentDTO.getTags().stream().map(tagDTO -> {
-            Optional<UserEntity> mentionedUser = Optional.of(userPort.findById(tagDTO.getUserTagged().getId()));
+            Optional<UserEntity> mentionedUser = Optional.of(userPort.getByUsername(tagDTO.getUserTagged().getUsername()));
             return mentionedUser.map(userEntity -> {
                 TagEntity tag = new TagEntity();
                 tag.setUserTaggerEntity(user);

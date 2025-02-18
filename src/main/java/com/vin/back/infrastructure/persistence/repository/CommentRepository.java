@@ -9,6 +9,7 @@ import com.vin.back.application.port.out.CommentPort;
 import com.vin.back.application.port.out.respository.JpaCommentRepositoryInterface;
 import com.vin.back.domain.model.CommentEntity;
 import com.vin.back.domain.model.PostEntity;
+import com.vin.back.domain.model.UserEntity;
 
 @Repository
 public class CommentRepository implements CommentPort {
@@ -23,5 +24,10 @@ public class CommentRepository implements CommentPort {
     @Override
     public CommentEntity save(CommentEntity entity) {
         return repository.save(entity);
+    }
+
+    @Override
+    public boolean existsByPostEntityAndUserEntity(PostEntity post, UserEntity user) {
+        return repository.existsByPostEntityAndUserEntity(post, user);
     }
 }

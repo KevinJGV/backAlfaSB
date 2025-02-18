@@ -8,6 +8,7 @@ import com.vin.back.domain.model.PostEntity;
 import com.vin.back.domain.model.UserEntity;
 
 public interface LikePort extends SavePort<LikeEntity> {
+    boolean existsByPostEntityAndUserEntity(PostEntity post, UserEntity user);
     Optional<LikeEntity> getByPostEntityAndUserEntity(PostEntity post, UserEntity user);
     void deleteByPostEntityAndUserEntity(PostEntity post, UserEntity user);
 }
