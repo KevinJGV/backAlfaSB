@@ -2,6 +2,7 @@ package com.vin.back.domain.model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,13 +20,14 @@ public class FollowEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "iduserfollowed")
+    @JoinColumn(name = "iduserfollowed", nullable = false)
     private UserEntity userFollowedEntity;
 
     @ManyToOne
-    @JoinColumn(name = "iduserfollower")
+    @JoinColumn(name = "iduserfollower", nullable = false)
     private UserEntity userFollowerEntity;
 
+    @Column(nullable = false)
     private LocalDate followdate;
 
     public FollowEntity() {

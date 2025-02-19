@@ -35,4 +35,9 @@ public class LikeRepository implements LikePort{
     public LikeEntity save(LikeEntity likeEntity) {
         return repository.save(likeEntity);
     }
+
+    @Override
+    public void deleteByUserEntityAndPostEntity(UserEntity user, PostEntity post) {
+        repository.deleteByUserEntityAndPostEntity(user, post);
+    }
 }

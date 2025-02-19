@@ -11,4 +11,5 @@ public interface LikePort extends SavePort<LikeEntity> {
     boolean existsByPostEntityAndUserEntity(PostEntity post, UserEntity user);
     Optional<LikeEntity> getByPostEntityAndUserEntity(PostEntity post, UserEntity user);
     void deleteByPostEntityAndUserEntity(PostEntity post, UserEntity user);
+    void deleteByUserEntityAndPostEntity(UserEntity user, PostEntity post);
 }

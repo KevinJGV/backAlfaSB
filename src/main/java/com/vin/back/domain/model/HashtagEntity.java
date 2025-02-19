@@ -20,7 +20,7 @@ public class HashtagEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(unique = true, length = 30)
+    @Column(unique = true, length = 30, nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "hashtagEntity", cascade = CascadeType.ALL, orphanRemoval = true)

@@ -1,6 +1,7 @@
 package com.vin.back.application.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vin.back.application.dto.CommentDTO;
+import com.vin.back.application.dto.HashtagDTO;
 import com.vin.back.application.dto.LikeDTO;
 import com.vin.back.application.dto.PostDTO;
 import com.vin.back.application.port.in.PostCaseUse;
@@ -18,6 +20,7 @@ import com.vin.back.application.port.out.LikePort;
 import com.vin.back.application.port.out.PostPort;
 import com.vin.back.application.port.out.TagPort;
 import com.vin.back.application.port.out.UserPort;
+import com.vin.back.domain.mapper.HashtagMapper;
 import com.vin.back.domain.mapper.PostMapper;
 import com.vin.back.domain.model.CommentEntity;
 import com.vin.back.domain.model.HashtagEntity;
@@ -63,23 +66,47 @@ public class PostService implements PostCaseUse {
     @Override
     public PostEntity setPost(PostDTO post) {
         PostEntity finalPost = new PostEntity();
-        finalPost.setContent(finalPost.getContent());
+        finalPost.setUserEntity(userPort.findById(post.getUser().getId()));
+        finalPost.setImageAttached(post.getImageAttached());
+        finalPost.setContent(post.getContent());
         finalPost.setUploadDate(LocalDate.now());
 
-        List<HashtagEntity> hashtagEntities = post.getRawHashtags().stream().map(hashtag -> {
-            return hashtagPort.getByName(hashtag).orElseGet(() -> {
-                HashtagEntity finalHashtag = new HashtagEntity();
-                finalHashtag.setName(hashtag);
-                return hashtagPort.save(finalHashtag);
-            });
-        }).collect(Collectors.toList());
+        List<HashtagEntity> hashtagEntities = new ArrayList<>();
 
-        List<PostHashtagEntity> relationEntities = hashtagEntities.stream().map(tag -> {
-            PostHashtagEntity relation = new PostHashtagEntity();
-            relation.setPostEntity(finalPost);
-            relation.setHashtagEntity(tag);
-            return relation;
-        }).collect(Collectors.toList());
+        // Verifica si post o sus hashtags son nulos
+        if (post != null && post.getHashtags() != null) {
+
+            for (HashtagDTO dto : post.getHashtags()) {
+
+                // Verifica si dto es nulo o su nombre es nulo
+                if (dto != null && dto.getName() != null) {
+                    HashtagEntity existingTag = hashtagPort.getByName(dto.getName());
+
+                    if (existingTag != null) {
+                        hashtagEntities.add(existingTag);
+                    } else {
+                        HashtagEntity newTag = new HashtagEntity();
+                        newTag.setName(dto.getName());
+                        HashtagEntity savedTag = hashtagPort.save(newTag);
+
+                        // Verifica que el guardado no sea nulo antes de añadir
+                        if (savedTag != null) {
+                            hashtagEntities.add(savedTag);
+                        }
+                    }
+                } else {
+                    System.out.println("Hashtag nulo o sin nombre, se omite.");
+                }
+            }
+        }
+
+        List<PostHashtagEntity> relationEntities = hashtagEntities.stream()
+                .map(tag -> {
+                    PostHashtagEntity relation = new PostHashtagEntity();
+                    relation.setPostEntity(finalPost);
+                    relation.setHashtagEntity(tag);
+                    return relation;
+                }).collect(Collectors.toList());
 
         finalPost.setPostHashtagEntities(relationEntities);
         return postPort.save(finalPost);
@@ -96,9 +123,12 @@ public class PostService implements PostCaseUse {
         UserEntity user = userPort.findById(likeDTO.getRawUserId());
 
         Optional<LikeEntity> like = likePort.getByPostEntityAndUserEntity(post, user);
+        like.ifPresent(l -> System.out.println("Presente"));
 
+        System.out.println(like.isEmpty());
+        like.ifPresent(l -> System.out.println("Presente"));
         if (like.isPresent()) {
-            likePort.deleteByPostEntityAndUserEntity(post, user);
+            likePort.deleteByUserEntityAndPostEntity(user, post);
             return false;
         } else {
             LikeEntity newLike = new LikeEntity();
@@ -119,7 +149,8 @@ public class PostService implements PostCaseUse {
         newComment.setUserEntity(user);
 
         List<TagEntity> tags = commentDTO.getTags().stream().map(tagDTO -> {
-            Optional<UserEntity> mentionedUser = Optional.of(userPort.getByUsername(tagDTO.getUserTagged().getUsername()));
+            Optional<UserEntity> mentionedUser = Optional
+                    .of(userPort.getByUsername(tagDTO.getUserTagged().getUsername()));
             return mentionedUser.map(userEntity -> {
                 TagEntity tag = new TagEntity();
                 tag.setUserTaggerEntity(user);

@@ -51,12 +51,12 @@ public class PostController {
     }
 
     @PutMapping
-    public ResponseEntity<PostEntity> updatePost(@ModelAttribute PostDTO post) {
+    public ResponseEntity<PostEntity> updatePost(@RequestBody PostDTO post) {
         return ResponseEntity.ok(postService.setPost(post));
     }
 
     @PostMapping
-    public ResponseEntity<PostEntity> setPost(@ModelAttribute PostDTO post) {
+    public ResponseEntity<PostEntity> setPost(@RequestBody PostDTO post) {
         return ResponseEntity.ok(postService.setPost(post));
     }
 
@@ -66,16 +66,16 @@ public class PostController {
     }
 
     @PostMapping("/like")
-    public ResponseEntity<Boolean> toggleLike(@ModelAttribute LikeDTO likeDTO) {
+    public ResponseEntity<Boolean> toggleLike(@RequestBody LikeDTO likeDTO) {
         return ResponseEntity.ok(postService.toggleLike(likeDTO));
     }
 
     @PostMapping("/comment")
-    public ResponseEntity<CommentEntity> setComment(@ModelAttribute CommentDTO commentDTO) {
+    public ResponseEntity<CommentEntity> setComment(@RequestBody CommentDTO commentDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(postService.setComment(commentDTO));
     }
 
-    @GetMapping("/interactions")
+    @PostMapping("/interactions")
     public ResponseEntity<Map<String, Boolean>> checkUserInteractions(
             @RequestBody Map<String, String> interactionData) {
         boolean hasLiked = likeService.hasUserLiked(Long.valueOf(interactionData.get("postId")), interactionData.get("username"));

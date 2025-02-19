@@ -1,5 +1,6 @@
 package com.vin.back.infrastructure.persistence.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +16,17 @@ public class HashtagRepository implements HashtagPort{
     private JpaHashtagRepositoryInterface repository;
 
     @Override
-    public Optional<HashtagEntity> getByName(String name) {
-        return Optional.of(repository.findByName(name));
+    public HashtagEntity getByName(String name) {
+        return repository.findByName(name);
     }
 
     @Override
     public HashtagEntity save(HashtagEntity entity) {
         return repository.save(entity);
+    }
+
+    @Override
+    public List<HashtagEntity> saveAll(List<HashtagEntity> hashtags) {
+        return repository.saveAll(hashtags);
     }
 }

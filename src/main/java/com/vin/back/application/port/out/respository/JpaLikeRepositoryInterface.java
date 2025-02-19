@@ -12,4 +12,5 @@ public interface JpaLikeRepositoryInterface extends JpaRepository<LikeEntity,Lon
     boolean existsByPostEntityAndUserEntity(PostEntity post, UserEntity user);
     Optional<LikeEntity> findByPostEntityAndUserEntity(PostEntity post, UserEntity user);
     void deleteByPostEntityAndUserEntity(PostEntity post, UserEntity user);
+    void deleteByUserEntityAndPostEntity(UserEntity user, PostEntity post);
 }

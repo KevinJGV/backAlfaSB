@@ -17,15 +17,15 @@ public class TagEntity {
     private Long id;
     
     @ManyToOne
-    @JoinColumn(name = "idusertagged")
+    @JoinColumn(name = "idusertagged", nullable = false)
     private UserEntity userTaggedEntity;
 
     @ManyToOne
-    @JoinColumn(name = "idusertagger")
+    @JoinColumn(name = "idusertagger", nullable = false)
     private UserEntity userTaggerEntity;
 
     @ManyToOne
-    @JoinColumn(name = "idcomment")
+    @JoinColumn(name = "idcomment", nullable = false)
     private CommentEntity commentEntity;
 
     public TagEntity() {

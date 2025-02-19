@@ -13,6 +13,7 @@ import com.vin.back.domain.model.UserEntity;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
@@ -33,11 +34,11 @@ public class AuthController {
         return "OK!";
     }
 
+    @CrossOrigin(origins = "http://localhost:5174")
     @PostMapping("/logout")
     public ResponseEntity<String> logout(HttpServletRequest request) {
-        
         String token = request.getHeader("Authorization");
-        
+
         if (token != null && token.startsWith("Bearer ")) {
             token = token.substring(7);
             authService.logout(token);

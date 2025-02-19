@@ -17,6 +17,7 @@ import com.vin.back.application.dto.UserDTO;
 import com.vin.back.application.service.UserService;
 
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
@@ -32,7 +33,7 @@ public class UserController {
     }
 
     @PutMapping
-    public ResponseEntity<ShortUserDTO> updateUser(@ModelAttribute ShortUserDTO userEntity) {
+    public ResponseEntity<ShortUserDTO> updateUser(@RequestBody ShortUserDTO userEntity) {
         return ResponseEntity.ok(userService.save(userEntity));
     }
     
@@ -47,7 +48,7 @@ public class UserController {
     }
 
     @PostMapping("/follow")
-    public ResponseEntity<Boolean> setfollow(@ModelAttribute FollowDTO followDTO) {
+    public ResponseEntity<Boolean> setfollow(@RequestBody FollowDTO followDTO) {
         return ResponseEntity.ok(userService.toggleFollow(followDTO));
     }
 }

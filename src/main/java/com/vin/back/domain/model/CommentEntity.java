@@ -24,17 +24,17 @@ public class CommentEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "iduser")
+    @JoinColumn(name = "iduser", nullable = false)
     private UserEntity userEntity;
 
     @ManyToOne
-    @JoinColumn(name = "idpost")
+    @JoinColumn(name = "idpost", nullable = false)
     private PostEntity postEntity;
 
     @OneToMany(mappedBy = "commentEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TagEntity> tagEntities = new ArrayList<>();
 
-    @Column(length = 200)
+    @Column(length = 200, nullable = false)
     private String content;
 
     public CommentEntity() {
